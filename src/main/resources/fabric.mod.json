@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "endervator",
+  "version": "${version}",
+
+  "name": "Endervator",
+  "description": "Stairs are so 2009.",
+  "authors": [
+    "Pugsworth"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/endervator/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.pugsworth.endervator.EndervatorMod"
+    ]
+  },
+  "mixins": [
+    "endervator.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
