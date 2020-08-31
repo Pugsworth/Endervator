@@ -3,6 +3,7 @@
   "package": "net.pugsworth.endervator.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ServerPlayerEntityMixin"
   ],
   "client": [
     "client.ClientPlayerEntityMixin"

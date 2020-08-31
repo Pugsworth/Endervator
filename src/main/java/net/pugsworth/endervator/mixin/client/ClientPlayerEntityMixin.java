@@ -1,7 +1,10 @@
 package net.pugsworth.endervator.mixin.client;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.MinecraftClientGame;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.world.timer.Timer;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,15 +18,21 @@ public class ClientPlayerEntityMixin
 	@Shadow
 	public Input input;
 
+	@Shadow
+	public MinecraftClient client;
+
+	private long lastJumpOrSneak;
+
 	@Inject(at = @At("TAIL"), method = "tickMovement()V")
 	public void tickMovement(CallbackInfo callbackInfo)
 	{
 		boolean isJumping = this.input.jumping;
 		boolean isSneaking = this.input.sneaking;
 
-		if (isJumping || isSneaking)
+		if ((isJumping || isSneaking))
 		{
-			System.out.println("jumping or sneaking!");
+			lastJumpOrSneak = this.client.world.getTime();
+			// System.out.println("jumping or sneaking!");
 		}
 	}
 }

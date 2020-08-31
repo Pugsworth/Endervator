@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "" : { "model": "endervator:block/endervator_block" }
+    }
+}

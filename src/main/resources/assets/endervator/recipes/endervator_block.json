@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#E#",
+        "CKC",
+        "#E#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_block"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        },
+        "C": {
+            "item": "minecraft:chorus_flower"
+        },
+        "K": {
+            "item": "minecraft:ender_pearl"
+        }
+    },
+    "result": {
+        "item": "endervator:endervator_block",
+        "count": 1
+    }
+}
