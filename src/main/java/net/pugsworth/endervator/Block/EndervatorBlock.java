@@ -71,13 +71,15 @@ public class EndervatorBlock extends Block
         }
 
         BlockPos newpos = origin;
+        BlockState newblockstate;
         Block newblock;
         for (int i = 0; i < MAXIMUM_DISTANCE; i++)
         {
             newpos = newpos.add(direction.getVector());
-            newblock = world.getBlockState(newpos).getBlock();
+            newblockstate = world.getBlockState(newpos);
+            newblock = newblockstate.getBlock();
 
-            if (newblock.equals(EndervatorMod.ENDERVATOR_BLOCK)) {
+            if (newblock.equals(EndervatorMod.ENDERVATOR_BLOCK) && !newblockstate.get(POWERED)) {
                 return newpos;
             }
         }
