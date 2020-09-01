@@ -1,5 +1,8 @@
 package net.pugsworth.endervator;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tools.FabricToolTags;
@@ -14,6 +17,8 @@ import net.pugsworth.endervator.Block.EndervatorBlock;
 
 public class EndervatorMod implements ModInitializer
 {
+	public static final String MODID = "endervator";
+	public static final Logger logger = LogManager.getLogger(MODID);
 
 	public static final Block ENDERVATOR_BLOCK = new EndervatorBlock(FabricBlockSettings
 		.of(Material.METAL)
@@ -24,11 +29,15 @@ public class EndervatorMod implements ModInitializer
 		.build()
 	);
 
+	public static final Identifier TELEPORT_PACKET = new Identifier(MODID, "teleport_packet");
+
 	@Override
 	public void onInitialize()
 	{
-		Registry.register(Registry.BLOCK, new Identifier("endervator", "endervator_block"), ENDERVATOR_BLOCK);
-		Registry.register(Registry.ITEM, new Identifier("endervator", "endervator_block"), new BlockItem(ENDERVATOR_BLOCK, new Item.Settings().group(ItemGroup.MISC)));
+		Registry.register(Registry.BLOCK, new Identifier(MODID, "endervator_block"), ENDERVATOR_BLOCK);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "endervator_block"), new BlockItem(ENDERVATOR_BLOCK, new Item.Settings().group(ItemGroup.MISC)));
+
+
 	}
 }
 
@@ -38,4 +47,7 @@ public class EndervatorMod implements ModInitializer
  * 
  * particles
  * check space above endervator
+ * config
+ * fuel
+ * particles and "power" only if there is at least 1 valid endervator you can teleport to?
  */

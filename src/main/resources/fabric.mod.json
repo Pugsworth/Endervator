@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.pugsworth.endervator.EndervatorMod"
+    ],
+    "client" :[
+      "net.pugsworth.endervator.EndervatorClientMod"
     ]
   },
   "mixins": [
