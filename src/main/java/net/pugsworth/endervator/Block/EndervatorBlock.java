@@ -10,10 +10,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -21,7 +23,6 @@ import net.pugsworth.endervator.EndervatorMod;
 
 public class EndervatorBlock extends Block 
 {
-    public static int MAXIMUM_DISTANCE = 16;
     public static BooleanProperty POWERED = Properties.POWERED;
 
     public EndervatorBlock(Settings settings)
@@ -46,8 +47,8 @@ public class EndervatorBlock extends Block
      }
 
     @Override
-    public int getLuminance(BlockState blockState_1) {
-        return blockState_1.get(POWERED) ? 0 : super.getLuminance(blockState_1);
+    public int getLuminance(BlockState blockState) {
+        return blockState.get(POWERED) ? 0 : super.getLuminance(blockState);
     }
 
     public static boolean isStandingOn(PlayerEntity entity, World world)
@@ -55,7 +56,7 @@ public class EndervatorBlock extends Block
         BlockPos pos = entity.getBlockPos().down();
         Block blockBelow = world.getBlockState(pos).getBlock();
 
-        if (blockBelow.equals(EndervatorMod.ENDERVATOR_BLOCK)) {
+        if (blockBelow.equals(ModBlocks.ENDERVATOR_BLOCK)) {
             return true;
         }
 
@@ -71,13 +72,13 @@ public class EndervatorBlock extends Block
         BlockPos newpos = origin;
         BlockState newblockstate;
         Block newblock;
-        for (int i = 0; i < MAXIMUM_DISTANCE; i++)
+        for (int i = 0; i < EndervatorMod.CONFIG.maximumDistance; i++)
         {
             newpos = newpos.add(direction.getVector());
             newblockstate = world.getBlockState(newpos);
             newblock = newblockstate.getBlock();
 
-            if (newblock.equals(EndervatorMod.ENDERVATOR_BLOCK) && !newblockstate.get(POWERED)) {
+            if (newblock.equals(ModBlocks.ENDERVATOR_BLOCK) && !newblockstate.get(POWERED)) {
                 return newpos;
             }
         }
@@ -85,17 +86,29 @@ public class EndervatorBlock extends Block
         return null;
     }
 
-    public static void TeleportEntityToEndervatorBlock(Entity entity, World world, BlockPos pos)
+    public static void TeleportEntityToEndervatorBlock(PlayerEntity playerEntity, World world, BlockPos pos)
     {
         BlockPos newpos = pos.up();
-        entity.teleport((double)newpos.getX() + 0.5, (double)newpos.getY(), (double)newpos.getZ() + 0.5);
-        world.playSound(null, newpos.getX(), newpos.getY(), newpos.getZ(), SoundEvents.ENTITY_SHULKER_TELEPORT, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        playerEntity.teleport(newpos.getX() + 0.5, newpos.getY(), newpos.getZ() + 0.5);
+
+        PlaySound(world, newpos, EndervatorMod.CONFIG.soundName);
+    }
+
+    public static void PlaySound(World world, BlockPos pos, String id)
+    {
+        SoundEvent sound = new SoundEvent(new Identifier(id));
+        PlaySound(world, pos, sound);
+    }
+
+    public static void PlaySound(World world, BlockPos pos, SoundEvent sound)
+    {
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), sound, SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random)
     {
-        if (blockState.get(POWERED)) {
+        if (blockState.get(POWERED) || !EndervatorMod.CONFIG.client.useParticles) {
             return;
         }
 

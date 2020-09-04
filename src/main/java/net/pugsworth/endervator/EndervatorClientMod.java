@@ -32,6 +32,9 @@ public class EndervatorClientMod implements ClientModInitializer
 
     public static void DoParticles(World world, BlockPos origin, BlockPos destination)
     {
+        if (!EndervatorMod.CONFIG.client.useParticleStream)
+            return;
+            
         int distance = origin.getManhattanDistance(destination);
         Direction direction = Direction.DOWN;
 

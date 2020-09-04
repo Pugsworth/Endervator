@@ -3,41 +3,28 @@ package net.pugsworth.endervator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tools.FabricToolTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.pugsworth.endervator.Block.EndervatorBlock;
+import net.pugsworth.endervator.Block.ModBlocks;
+import net.pugsworth.endervator.config.EndervatorConfig;
 
 public class EndervatorMod implements ModInitializer
 {
 	public static final String MODID = "endervator";
 	public static final Logger logger = LogManager.getLogger(MODID);
-
-	public static final Block ENDERVATOR_BLOCK = new EndervatorBlock(FabricBlockSettings
-		.of(Material.METAL)
-		.breakByTool(FabricToolTags.PICKAXES)
-		.lightLevel(6)
-		.strength(5, 6)
-		.ticksRandomly()
-		.build()
-	);
+	public static final EndervatorConfig CONFIG = AutoConfig.register(EndervatorConfig.class, JanksonConfigSerializer::new).getConfig();
 
 	public static final Identifier TELEPORT_PACKET = new Identifier(MODID, "teleport_packet");
 
 	@Override
 	public void onInitialize()
 	{
-		Registry.register(Registry.BLOCK, new Identifier(MODID, "endervator_block"), ENDERVATOR_BLOCK);
-		Registry.register(Registry.ITEM, new Identifier(MODID, "endervator_block"), new BlockItem(ENDERVATOR_BLOCK, new Item.Settings().group(ItemGroup.MISC)));
+		if (!CONFIG.enable)
+			return;
 
-
+		ModBlocks.RegisterBlocks();
 	}
 }
 
