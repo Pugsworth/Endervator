@@ -1,4 +1,7 @@
 {
     "block.endervator.endervator_block": "Endervator Block",
-    "item.endervator.endervator_block": "Endervator Block"
+    "item.endervator.endervator_block": "Endervator Block",
+
+    "block.endervator.enderpearl_block": "Ender Pearl Block",
+    "item.endervator.enderpearl_block": "Ender Pearl Block"
 }

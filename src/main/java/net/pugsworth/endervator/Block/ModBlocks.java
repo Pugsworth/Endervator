@@ -21,10 +21,18 @@ public class ModBlocks
 		.ticksRandomly()
 		.build()
 	);
+
+	public static final Block ENDERPEARL_BLOCK = new EnderPearlBlock(FabricBlockSettings
+		.of(Material.ORGANIC)
+		.lightLevel(6)
+		.strength(2, 2)
+		.build()
+    );
     
     public static void RegisterBlocks()
     {
         registerBlock("endervator_block", ENDERVATOR_BLOCK, ItemGroup.MISC);
+		registerBlock("enderpearl_block", ENDERPEARL_BLOCK, ItemGroup.MISC);
     }
 
     public static void registerBlock(String id, Block block, ItemGroup group)

@@ -16,7 +16,7 @@
             "item": "minecraft:chorus_fruit"
         },
         "K": {
-            "item": "minecraft:ender_pearl"
+            "item": "endervator:enderpearl_block"
         }
     },
     "result": {
