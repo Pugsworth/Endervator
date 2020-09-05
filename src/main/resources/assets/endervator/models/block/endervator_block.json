@@ -1,7 +1,7 @@
 {
-  "parent": "block/cube_column",
+  "parent": "block/cube_top",
   "textures": {
-    "side": "minecraft:block/iron_block",
-    "end": "minecraft:block/bone_block_top"
+    "side": "endervator:block/endervator_side",
+    "top": "endervator:block/endervator_top"
   }
 }

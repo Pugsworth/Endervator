@@ -20,6 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.pugsworth.endervator.EndervatorMod;
 import net.pugsworth.endervator.Block.EndervatorBlock;
+import net.pugsworth.endervator.utils.ExperienceUtils;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {
@@ -71,7 +72,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                 {
                     int xpNeeded = (int)Math.round(EndervatorMod.CONFIG.fuel.xpAmount * (EndervatorMod.CONFIG.fuel.xpAmountAbsolute ? 1 : distance));
 
-                    if (this.totalExperience >= xpNeeded)
+                    if (ExperienceUtils.getExperienceInt(this) >= xpNeeded)
                     {
                         canTeleport = true;
                         this.addExperience(-xpNeeded);
