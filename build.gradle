@@ -10,7 +10,7 @@ def git_rev = 'git rev-list --count HEAD'.execute().getText().trim()
 def git_hash = 'git rev-parse --short HEAD'.execute().getText().trim()
 
 archivesBaseName = project.archives_base_name
-version = "${project.mod_version}+${minecraft_version}"
+version = "${project.mod_version}-build.${git_rev}+${minecraft_version}"
 group = project.maven_group
 
 minecraft {
