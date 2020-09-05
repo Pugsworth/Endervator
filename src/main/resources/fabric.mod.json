@@ -29,7 +29,7 @@
     "endervator.mixins.json"
   ],
   "custom": {
-    "modmenu:api": true,
+    "modmenu:api": false,
     "modmenu:clientsideOnly": false
   },
   "depends": {
