@@ -7,7 +7,7 @@ Inspired by the Elevator Block from [OpenBlocks](https://ftbwiki.org/Elevator_(O
 ### Blocks
 
 * Endervator Block
-  - While standing on this block, you can jump to go up or crouch to go down
+  - While standing on this block, you can jump to go up or sneak to go down
   - It will search for another endervator block within the maximum distance to teleport the player to.
 * Ender Pearl Block
   - This block allows compression of enderpearls at 9:1
