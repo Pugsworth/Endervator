@@ -6,20 +6,20 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.pugsworth.endervator.EndervatorMod;
+import net.pugsworth.endervator.utils.TeleportUtils;
 
 public class EndervatorBlock extends Block 
 {
@@ -88,10 +88,11 @@ public class EndervatorBlock extends Block
 
     public static void TeleportEntityToEndervatorBlock(PlayerEntity playerEntity, World world, BlockPos pos)
     {
-        BlockPos newpos = pos.up();
-        playerEntity.teleport(newpos.getX() + 0.5, newpos.getY(), newpos.getZ() + 0.5);
+        BlockPos newBlockPos = pos.up();
+        Vec3d newPos = new Vec3d(newBlockPos.getX() + 0.5d, newBlockPos.getY(), newBlockPos.getZ() + 0.5d);
+        TeleportUtils.enqueueTeleport(world, playerEntity, newPos);
 
-        PlaySound(world, newpos, EndervatorMod.CONFIG.soundName);
+        PlaySound(world, newBlockPos, EndervatorMod.CONFIG.soundName);
     }
 
     public static void PlaySound(World world, BlockPos pos, String id)

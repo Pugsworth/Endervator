@@ -16,7 +16,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.pugsworth.endervator.EndervatorMod;
 import net.pugsworth.endervator.Block.EndervatorBlock;
@@ -99,7 +98,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                 if (!canTeleport)
                     return;
 
-                this.setPosition(blockPosBelow.getX() + 0.5, blockPosBelow.getY(), blockPosBelow.getZ() + 0.5);
+                // this.setPosition(blockPosBelow.getX() + 0.5, blockPosBelow.getY(), blockPosBelow.getZ() + 0.5);
                 EndervatorBlock.TeleportEntityToEndervatorBlock(this, this.world, nextPos);
 
                 if (EndervatorMod.CONFIG.damage.doesDamage)
