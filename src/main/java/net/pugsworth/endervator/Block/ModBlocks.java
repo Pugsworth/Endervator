@@ -1,7 +1,7 @@
 package net.pugsworth.endervator.Block;
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tools.FabricToolTags;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
@@ -19,14 +19,12 @@ public class ModBlocks
 		.lightLevel(EndervatorMod.CONFIG.lightLevel)
 		.strength(5, 6)
 		.ticksRandomly()
-		.build()
 	);
 
 	public static final Block ENDERPEARL_BLOCK = new EnderPearlBlock(FabricBlockSettings
-		.of(Material.ORGANIC)
+		.of(Material.ORGANIC_PRODUCT)
 		.lightLevel(6)
 		.strength(2, 2)
-		.build()
     );
     
     public static void RegisterBlocks()

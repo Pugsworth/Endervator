@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager.Builder;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -32,7 +32,7 @@ public class EndervatorBlock extends Block
     }
 
     @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory)
+    protected void appendProperties(Builder<Block, BlockState> stateFactory)
     {
         stateFactory.add(POWERED);
     }

@@ -4,8 +4,6 @@ import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.Comment;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.pugsworth.endervator.EndervatorMod;
 
 @Config(name=EndervatorMod.MODID)
@@ -56,7 +54,7 @@ public class EndervatorConfig implements ConfigData
         @Comment("An internal inventory to use an item for fuel.")
         public boolean useItem = false;
         @Comment("What Item to use for fuel?")
-        public Item itemID = Items.ENDER_PEARL;
+        public String itemID = "minecraft:ender_pearl";
         @Comment("Use damage for fuel.")
         public boolean useDamage = false;
         @Comment("How much damage to incur per block.")

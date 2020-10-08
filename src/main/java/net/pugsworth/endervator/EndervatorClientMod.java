@@ -1,7 +1,5 @@
 package net.pugsworth.endervator;
 
-import org.apache.logging.log4j.Level;
-
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,11 +40,9 @@ public class EndervatorClientMod implements ClientModInitializer
             direction = Direction.UP;
         }
 
-        double vx = ((double)world.random.nextFloat() - 0.5D) * 0.5D;
+        // double vx = ((double)world.random.nextFloat() - 0.5D) * 0.5D;
         double vy = 2.0d;
-        double vz = ((double)world.random.nextFloat() - 0.5D) * 0.5D;
-
-        EndervatorMod.logger.log(Level.DEBUG, vx);
+        // double vz = ((double)world.random.nextFloat() - 0.5D) * 0.5D;
 
         // 2 particles per block?
         for (int i = 0; i < (distance*2); i++) {

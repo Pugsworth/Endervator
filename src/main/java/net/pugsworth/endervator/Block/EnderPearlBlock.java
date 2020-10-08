@@ -6,11 +6,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager.Builder;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -29,7 +31,7 @@ public class EnderPearlBlock extends Block
     }
 
     @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory)
+    protected void appendProperties(Builder<Block, BlockState> stateFactory)
     {
         stateFactory.add(ENABLED);
     }
@@ -38,22 +40,22 @@ public class EnderPearlBlock extends Block
     public int getLuminance(BlockState blockState) {
         return blockState.get(ENABLED) ? super.getLuminance(blockState) : 0;
     }
-
+    
     @Override
-    public void onScheduledTick(BlockState blockState, World world, BlockPos blockPos, Random random)
+    public void scheduledTick(BlockState blockState, ServerWorld world, BlockPos blockPos, Random random)
     {
         world.setBlockState(blockPos, blockState.with(ENABLED, true));
-        super.onScheduledTick(blockState, world, blockPos, random);
+        super.scheduledTick(blockState, world, blockPos, random);
     }
 
     @Override
-    public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockHitResult blockHitResult)
+    public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockHitResult blockHitResult)
     {
         if (blockState.get(ENABLED)) {
             TeleportRandomly(world, blockPos, playerEntity);
         }
 
-        return super.activate(blockState, world, blockPos, playerEntity, hand, blockHitResult);
+        return super.onUse(blockState, world, blockPos, playerEntity, hand, blockHitResult);
     }
 
     @Override

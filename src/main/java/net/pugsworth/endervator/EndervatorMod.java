@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.server.ServerTickCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.util.Identifier;
 import net.pugsworth.endervator.Block.ModBlocks;
 import net.pugsworth.endervator.config.EndervatorConfig;
@@ -28,7 +28,7 @@ public class EndervatorMod implements ModInitializer
 
 		ModBlocks.RegisterBlocks();
 
-		ServerTickCallback.EVENT.register((server) -> {
+		ServerTickEvents.END_SERVER_TICK.register((server) -> {
 			TeleportUtils.tick(server);
 		});
 	}
